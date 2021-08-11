@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,11 +11,11 @@
 		2266009D26C42A1C0090DFB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266009C26C42A1C0090DFB8 /* SceneDelegate.swift */; };
 		2266009F26C42A1C0090DFB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266009E26C42A1C0090DFB8 /* ViewController.swift */; };
 		226600A226C42A1D0090DFB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226600A026C42A1D0090DFB8 /* Main.storyboard */; };
-		226600A526C42A1D0090DFB8 /* MarvelousSquad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 226600A326C42A1D0090DFB8 /* MarvelousSquad.xcdatamodeld */; };
 		226600A726C42A220090DFB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226600A626C42A220090DFB8 /* Assets.xcassets */; };
 		226600AA26C42A220090DFB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226600A826C42A220090DFB8 /* LaunchScreen.storyboard */; };
 		226600B526C42A220090DFB8 /* MarvelousSquadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226600B426C42A220090DFB8 /* MarvelousSquadTests.swift */; };
 		226600C026C42A220090DFB8 /* MarvelousSquadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226600BF26C42A220090DFB8 /* MarvelousSquadUITests.swift */; };
+		226D0FBA26C4554A00384DE0 /* Backend in Frameworks */ = {isa = PBXBuildFile; productRef = 226D0FB926C4554A00384DE0 /* Backend */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,6 @@
 		2266009C26C42A1C0090DFB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2266009E26C42A1C0090DFB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		226600A126C42A1D0090DFB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		226600A426C42A1D0090DFB8 /* MarvelousSquad.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MarvelousSquad.xcdatamodel; sourceTree = "<group>"; };
 		226600A626C42A220090DFB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		226600A926C42A220090DFB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		226600AB26C42A220090DFB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		226600BB26C42A220090DFB8 /* MarvelousSquadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelousSquadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		226600BF26C42A220090DFB8 /* MarvelousSquadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelousSquadUITests.swift; sourceTree = "<group>"; };
 		226600C126C42A220090DFB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		226D0FB826C43BAE00384DE0 /* Backend */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Backend; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226D0FBA26C4554A00384DE0 /* Backend in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +82,12 @@
 		2266008E26C42A1C0090DFB8 = {
 			isa = PBXGroup;
 			children = (
+				226600CD26C42A2E0090DFB8 /* Packages */,
 				2266009926C42A1C0090DFB8 /* MarvelousSquad */,
 				226600B326C42A220090DFB8 /* MarvelousSquadTests */,
 				226600BE26C42A220090DFB8 /* MarvelousSquadUITests */,
 				2266009826C42A1C0090DFB8 /* Products */,
+				226600CF26C42E7B0090DFB8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,7 +111,6 @@
 				226600A626C42A220090DFB8 /* Assets.xcassets */,
 				226600A826C42A220090DFB8 /* LaunchScreen.storyboard */,
 				226600AB26C42A220090DFB8 /* Info.plist */,
-				226600A326C42A1D0090DFB8 /* MarvelousSquad.xcdatamodeld */,
 			);
 			path = MarvelousSquad;
 			sourceTree = "<group>";
@@ -131,6 +133,21 @@
 			path = MarvelousSquadUITests;
 			sourceTree = "<group>";
 		};
+		226600CD26C42A2E0090DFB8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				226D0FB826C43BAE00384DE0 /* Backend */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		226600CF26C42E7B0090DFB8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,12 +158,16 @@
 				2266009326C42A1C0090DFB8 /* Sources */,
 				2266009426C42A1C0090DFB8 /* Frameworks */,
 				2266009526C42A1C0090DFB8 /* Resources */,
+				226D0FBB26C4555800384DE0 /* swiftformat linting */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MarvelousSquad;
+			packageProductDependencies = (
+				226D0FB926C4554A00384DE0 /* Backend */,
+			);
 			productName = MarvelousSquad;
 			productReference = 2266009726C42A1C0090DFB8 /* MarvelousSquad.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +277,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		226D0FBB26C4555800384DE0 /* swiftformat linting */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "swiftformat linting";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftformat >/dev/null; then\n  swiftformat --lint ${PROJECT_DIR}\n  exit 0\nelse\n  echo \"warning: swiftformat not installed, download it from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2266009326C42A1C0090DFB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -264,7 +306,6 @@
 				2266009F26C42A1C0090DFB8 /* ViewController.swift in Sources */,
 				2266009B26C42A1C0090DFB8 /* AppDelegate.swift in Sources */,
 				2266009D26C42A1C0090DFB8 /* SceneDelegate.swift in Sources */,
-				226600A526C42A1D0090DFB8 /* MarvelousSquad.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,18 +639,12 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		226600A326C42A1D0090DFB8 /* MarvelousSquad.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				226600A426C42A1D0090DFB8 /* MarvelousSquad.xcdatamodel */,
-			);
-			currentVersion = 226600A426C42A1D0090DFB8 /* MarvelousSquad.xcdatamodel */;
-			path = MarvelousSquad.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCSwiftPackageProductDependency section */
+		226D0FB926C4554A00384DE0 /* Backend */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Backend;
 		};
-/* End XCVersionGroup section */
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2266008F26C42A1C0090DFB8 /* Project object */;
 }

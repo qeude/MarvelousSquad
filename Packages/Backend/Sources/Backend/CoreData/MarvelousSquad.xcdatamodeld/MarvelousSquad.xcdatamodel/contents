@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="21A5294g" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Squad" representedClassName="Backend.Squad" syncable="YES" codeGenerationType="category">
+        <attribute name="identifier" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="superheroes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Superhero" inverseName="squad" inverseEntity="Superhero"/>
+    </entity>
+    <entity name="Superhero" representedClassName="Backend.Superhero" syncable="YES" codeGenerationType="category">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="identifier" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="rawThumbnailUrl" optional="YES" attributeType="String"/>
+        <relationship name="squad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Squad" inverseName="superheroes" inverseEntity="Squad"/>
+    </entity>
+    <elements>
+        <element name="Squad" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="Superhero" positionX="-63" positionY="-9" width="128" height="104"/>
+    </elements>
+</model>
