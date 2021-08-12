@@ -39,7 +39,10 @@ public final class StoreProvider: StoreProviderProtocol {
             retries: 0,
             jsonDecoder: jsonDecoder
         )
-        .map(\.data.results)
+        .map { response -> [Superhero] in
+            self.persistentContainer.saveContext()
+            return response.data.results
+        }
         .eraseToAnyPublisher()
     }
 }

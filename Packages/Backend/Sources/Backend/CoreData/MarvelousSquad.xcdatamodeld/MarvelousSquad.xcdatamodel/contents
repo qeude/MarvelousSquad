@@ -10,6 +10,11 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="rawThumbnailUrl" optional="YES" attributeType="String"/>
         <relationship name="squad" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Squad" inverseName="superheroes" inverseEntity="Squad"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="identifier"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="Squad" positionX="-63" positionY="-18" width="128" height="59"/>

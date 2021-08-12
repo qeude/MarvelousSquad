@@ -16,10 +16,23 @@ public final class PersistentContainer: NSPersistentContainer {
         super.init(name: name, managedObjectModel: mom)
 
         loadPersistentStores { storeDescription, error in
+            self.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
             if let error = error {
                 assertionFailure(error.localizedDescription)
             }
             print("Core Data stack has been initialized with description: \(storeDescription)")
+        }
+    }
+
+    func saveContext() {
+        let context = viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
 }

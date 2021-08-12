@@ -1,11 +1,10 @@
 @testable import Backend
-import XCTest
 import CoreData
+import XCTest
 
 final class BackendTests: XCTestCase {
     var networkProvider: NetworkProviderProtocol!
     var storeProvider: StoreProviderProtocol!
-    
 
     override func setUp() {
         super.setUp()
