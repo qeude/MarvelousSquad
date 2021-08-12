@@ -25,12 +25,10 @@ public extension URLRequest {
         guard var components = URLComponents(string: endpoint.urlString) else {
             return nil
         }
-        let publicKey = "***REMOVED***"
-        let privateKey = "***REMOVED***"
         let ts = "\(Date().timeIntervalSince1970)"
-        let apiKeyQueryItem = URLQueryItem(name: "apikey", value: publicKey)
+        let apiKeyQueryItem = URLQueryItem(name: "apikey", value: Constants.publicApiKey)
         let tsQueryItem = URLQueryItem(name: "ts", value: ts)
-        let hashQueryItem = URLQueryItem(name: "hash", value: "\(ts)\(privateKey)\(publicKey)".md5)
+        let hashQueryItem = URLQueryItem(name: "hash", value: "\(ts)\(Constants.privateApiKey)\(Constants.publicApiKey)".md5)
 
         components.queryItems = [apiKeyQueryItem, tsQueryItem, hashQueryItem]
 
