@@ -38,3 +38,17 @@ public class Superhero: NSManagedObject, Decodable {
         rawThumbnailUrl = "\(path).\(ext)"
     }
 }
+
+public extension Superhero {
+    var thumbnailUrl: URL? {
+        if let url = URL(string: rawThumbnailUrl ?? ""),
+           var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        {
+            if components.scheme == "http" {
+                components.scheme = "https"
+            }
+            return components.url
+        }
+        return nil
+    }
+}

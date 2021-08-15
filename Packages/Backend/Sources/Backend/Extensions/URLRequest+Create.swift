@@ -11,12 +11,19 @@ public extension URLRequest {
     enum Endpoint {
         private static let baseURL = "https://gateway.marvel.com:443/"
 
-        case listSuperheroes
+        case listSuperheroes(queryItems: [URLQueryItem])
 
         fileprivate var urlString: String {
             switch self {
             case .listSuperheroes:
                 return "\(Endpoint.baseURL)v1/public/characters"
+            }
+        }
+
+        fileprivate var queryItems: [URLQueryItem] {
+            switch self {
+            case let .listSuperheroes(queryItems):
+                return queryItems
             }
         }
     }
@@ -30,7 +37,7 @@ public extension URLRequest {
         let tsQueryItem = URLQueryItem(name: "ts", value: ts)
         let hashQueryItem = URLQueryItem(name: "hash", value: "\(ts)\(Constants.privateApiKey)\(Constants.publicApiKey)".md5)
 
-        components.queryItems = [apiKeyQueryItem, tsQueryItem, hashQueryItem]
+        components.queryItems = [apiKeyQueryItem, tsQueryItem, hashQueryItem] + endpoint.queryItems
 
         guard let url = components.url else {
             return nil

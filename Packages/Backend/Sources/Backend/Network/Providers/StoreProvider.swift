@@ -20,13 +20,15 @@ public final class StoreProvider: StoreProviderProtocol {
         jsonDecoder.userInfo[CodingUserInfoKey.managedObjectContext] = persistentContainer.viewContext
     }
 
-    public func listSuperheroes() -> AnyPublisher<[Superhero], Error> {
+    public func listSuperheroes(with offset: Int = 0) -> AnyPublisher<RootData<Superhero>, Error> {
+        let offsetQueryItem = URLQueryItem(name: "offset", value: "\(offset)")
+        let limitQueryItem = URLQueryItem(name: "limit", value: "20")
         guard
             let listSuperheroesRequest = URLRequest.createRequest(
-                for: .listSuperheroes
+                for: .listSuperheroes(queryItems: [offsetQueryItem, limitQueryItem])
             )
         else {
-            return Empty<[Superhero], Error>(
+            return Empty<RootData<Superhero>, Error>(
                 completeImmediately: true
             )
             .eraseToAnyPublisher()
@@ -39,10 +41,11 @@ public final class StoreProvider: StoreProviderProtocol {
             retries: 0,
             jsonDecoder: jsonDecoder
         )
-        .map { response -> [Superhero] in
+        .map(\.data)
+        .handleEvents(receiveOutput: { [unowned self] _ in
             self.persistentContainer.saveContext()
-            return response.data.results
-        }
+
+        })
         .eraseToAnyPublisher()
     }
 }

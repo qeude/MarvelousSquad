@@ -20,13 +20,46 @@ extension HomeViewController: NSFetchedResultsControllerDelegate {
 
         do {
             try superheroesFetchedResultsController.performFetch()
-            collectionView.reloadSections(IndexSet(integer: 0))
+            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         } catch {
             print("Fetch failed")
         }
     }
 
-    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at _: IndexPath?, for _: NSFetchedResultsChangeType, newIndexPath _: IndexPath?) {
-        collectionView.reloadSections(IndexSet(integer: 0))
+    func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
+        insertIndexPaths = [IndexPath]()
+        deleteIndexPaths = [IndexPath]()
+    }
+
+    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let indexPath = newIndexPath else {
+                return
+            }
+            insertIndexPaths.append(indexPath)
+        case .delete:
+            guard let indexPath = indexPath else {
+                return
+            }
+            deleteIndexPaths.append(indexPath)
+        case .move, .update:
+            break
+        @unknown default:
+            fatalError("Unhandled type: \(type)")
+        }
+    }
+
+    func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.performBatchUpdates({
+            for indexPath in self.insertIndexPaths {
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+
+            for indexPath in self.deleteIndexPaths {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }, completion: { _ in
+        })
     }
 }

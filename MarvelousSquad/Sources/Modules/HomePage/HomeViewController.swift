@@ -8,6 +8,7 @@
 import Backend
 import Combine
 import CoreData
+import Nuke
 import UIKit
 
 class HomeViewController: UIViewController {
@@ -24,56 +25,69 @@ class HomeViewController: UIViewController {
     let storeProvider: StoreProviderProtocol
 
     private enum State {
-        case initial, loading, data, noData, error(error: Error)
+        case initial, loading, data, error(error: Error)
     }
 
     private var state: State = .initial {
         didSet {
             switch state {
             case .loading:
-                collectionView.refreshControl?.beginRefreshing()
+                tableView.refreshControl?.beginRefreshing()
             default:
-                collectionView.refreshControl?.endRefreshing()
-                // Used this over reloadData to have a smoother reloading animation
-                collectionView.reloadSections(IndexSet(integer: 0))
+                tableView.refreshControl?.endRefreshing()
             }
         }
     }
 
     var superheroesFetchedResultsController: NSFetchedResultsController<Superhero>!
-
+    private var currentOffset: Int = 0
+    private var totalItems: Int = 0
+    private var currentCount: Int = 0
     private var cancellables: Set<AnyCancellable> = []
 
-    lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
-        collectionView.register(SuperheroCell.self, forCellWithReuseIdentifier: String(describing: SuperheroCell.self))
-        collectionView.backgroundColor = .systemBackground
-        collectionView.alwaysBounceVertical = true
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    var insertIndexPaths = [IndexPath]()
+    var deleteIndexPaths = [IndexPath]()
+
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(SuperheroCell.self, forCellReuseIdentifier: String(describing: SuperheroCell.self))
+        tableView.backgroundColor = .systemBackground
+        tableView.alwaysBounceVertical = true
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        collectionView.refreshControl = refreshControl
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
+        tableView.refreshControl = refreshControl
+        return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         configureFetchedResultsController()
-        fetchSuperheroes()
+        fetchSuperheroes(offset: 0)
     }
 
     @objc private func refresh(_: Any) {
-        fetchSuperheroes()
+        state = .loading
+        let request: NSFetchRequest<Superhero> = Superhero.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try storeProvider.persistentContainer.viewContext.fetch(request)
+            for object in results {
+                storeProvider.persistentContainer.viewContext.delete(object)
+            }
+        } catch {
+            print("Detele all data in SuperHero error :", error)
+        }
+        fetchSuperheroes(offset: 0)
     }
 
-    private func fetchSuperheroes() {
-        state = .loading
-
+    private func fetchSuperheroes(offset: Int) {
         storeProvider
-            .listSuperheroes()
+            .listSuperheroes(with: offset)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -81,14 +95,19 @@ class HomeViewController: UIViewController {
                 case let .failure(error):
                     self.state = .error(error: error)
                 }
-            } receiveValue: { superheroes in
-                if superheroes.isEmpty {
-                    self.state = .noData
-                } else {
-                    self.state = .data
-                }
+            } receiveValue: { response in
+                self.totalItems = response.total
+                self.currentOffset = response.offset
+                self.currentCount = self.currentOffset + response.count
+                self.state = .data
             }
             .store(in: &cancellables)
+    }
+
+    private func updateNextSet() {
+        if currentOffset != totalItems {
+            fetchSuperheroes(offset: min(totalItems, currentOffset + 20))
+        }
     }
 }
 
@@ -96,13 +115,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController {
     private func setupUI() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
 
         navigationController?.view.backgroundColor = .systemBackground
@@ -116,23 +135,30 @@ extension HomeViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selectedItemAt: \(indexPath)")
+    }
+
+    func tableView(_: UITableView, willDisplay _: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == currentCount - 10 {
+            updateNextSet()
+        }
     }
 }
 
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return superheroesFetchedResultsController.fetchedObjects?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: SuperheroCell.self), for: indexPath) as? SuperheroCell else {
-            return UICollectionViewListCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SuperheroCell.self), for: indexPath) as? SuperheroCell else {
+            return UITableViewCell()
         }
         let superhero = superheroesFetchedResultsController.object(at: indexPath)
         cell.titleLabel.text = superhero.name
+        Nuke.loadImage(with: superhero.thumbnailUrl, into: cell.avatarImageView)
         return cell
     }
 }

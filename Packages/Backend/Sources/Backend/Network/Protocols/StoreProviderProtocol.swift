@@ -11,5 +11,5 @@ import Foundation
 public protocol StoreProviderProtocol {
     var persistentContainer: PersistentContainer { get }
 
-    func listSuperheroes() -> AnyPublisher<[Superhero], Error>
+    func listSuperheroes(with offset: Int) -> AnyPublisher<RootData<Superhero>, Error>
 }
