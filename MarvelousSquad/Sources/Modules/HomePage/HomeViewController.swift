@@ -137,7 +137,11 @@ extension HomeViewController {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selectedItemAt: \(indexPath)")
+        guard let superhero = superheroesFetchedResultsController.fetchedObjects?[indexPath.row] else {
+            return
+        }
+        let detailsVC = SuperheroDetailViewController(superhero: superhero)
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
 
     func tableView(_: UITableView, willDisplay _: UITableViewCell, forRowAt indexPath: IndexPath) {

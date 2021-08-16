@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		223CEBC126C7C2B200A17494 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 223CEBC026C7C2B200A17494 /* Nuke */; };
+		22439C8B26C9A61700386D29 /* SuperheroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22439C8A26C9A61700386D29 /* SuperheroDetailViewController.swift */; };
 		2255BC8C26C5321B002DB0EC /* SuperheroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255BC8B26C5321B002DB0EC /* SuperheroCell.swift */; };
 		2255BC8E26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255BC8D26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift */; };
 		2266009B26C42A1C0090DFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266009A26C42A1C0090DFB8 /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22439C8A26C9A61700386D29 /* SuperheroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroDetailViewController.swift; sourceTree = "<group>"; };
 		2255BC8B26C5321B002DB0EC /* SuperheroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroCell.swift; sourceTree = "<group>"; };
 		2255BC8D26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		2266009726C42A1C0090DFB8 /* MarvelousSquad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelousSquad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22439C8926C9A5F600386D29 /* SuperheroDetail */ = {
+			isa = PBXGroup;
+			children = (
+				22439C8A26C9A61700386D29 /* SuperheroDetailViewController.swift */,
+			);
+			path = SuperheroDetail;
+			sourceTree = "<group>";
+		};
 		2255BC8626C53059002DB0EC /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +124,7 @@
 		2255BC8926C53144002DB0EC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				22439C8926C9A5F600386D29 /* SuperheroDetail */,
 				2255BC8A26C5314B002DB0EC /* HomePage */,
 			);
 			path = Modules;
@@ -354,6 +365,7 @@
 				2266009F26C42A1C0090DFB8 /* HomeViewController.swift in Sources */,
 				2266009B26C42A1C0090DFB8 /* AppDelegate.swift in Sources */,
 				2255BC8E26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift in Sources */,
+				22439C8B26C9A61700386D29 /* SuperheroDetailViewController.swift in Sources */,
 				2266009D26C42A1C0090DFB8 /* SceneDelegate.swift in Sources */,
 				2255BC8C26C5321B002DB0EC /* SuperheroCell.swift in Sources */,
 			);
