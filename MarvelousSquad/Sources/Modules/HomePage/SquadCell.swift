@@ -58,8 +58,7 @@ extension SquadCell {
             collectionView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            collectionView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 160),
+            contentView.heightAnchor.constraint(equalToConstant: 170),
         ])
     }
 }

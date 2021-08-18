@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
     var deleteIndexPaths = [IndexPath]()
 
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(SuperheroCell.self, forCellReuseIdentifier: SuperheroCell.Identifier)
         tableView.register(SquadCell.self, forCellReuseIdentifier: SquadCell.Identifier)
@@ -143,6 +143,33 @@ extension HomeViewController {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+
+        let sectionLabel = UILabel(frame: CGRect(x: 16, y: 28, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        sectionLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        sectionLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
+        sectionLabel.sizeToFit()
+        headerView.addSubview(sectionLabel)
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView.numberOfSections > 1, section == 0 {
+            return 50
+        }
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView.numberOfSections > 1, section == 0 {
+            return "My Squad"
+        }
+        return nil
+    }
+
     func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.numberOfSections == 1 {
             guard let superhero = superheroesFetchedResultsController.fetchedObjects?[indexPath.row] else {
