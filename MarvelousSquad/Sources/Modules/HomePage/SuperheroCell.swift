@@ -8,6 +8,8 @@
 import UIKit
 
 class SuperheroCell: UITableViewCell {
+    static let Identifier = String(describing: SuperheroCell.self)
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()

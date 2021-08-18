@@ -6,12 +6,14 @@
 //
 
 import Backend
-import UIKit
 import Nuke
+import UIKit
 
 class SuperheroDetailViewController: UIViewController {
-    init(superhero: Superhero) {
+    init(superhero: Superhero, storeProvider: StoreProviderProtocol) {
+        self.storeProvider = storeProvider
         self.superhero = superhero
+        squad = Squad.getSquad(with: storeProvider.persistentContainer.viewContext)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -77,8 +79,11 @@ class SuperheroDetailViewController: UIViewController {
         button.clipsToBounds = true
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = false
-        setRecruitStyle(button: button)
-//        setFireStyle(button: button)
+        if squad.superheroes?.contains(superhero) == true {
+            setFireStyle(button: button)
+        } else {
+            setRecruitStyle(button: button)
+        }
         return button
     }()
 
@@ -93,7 +98,9 @@ class SuperheroDetailViewController: UIViewController {
         return label
     }()
 
+    private let storeProvider: StoreProviderProtocol
     private let superhero: Superhero
+    private let squad: Squad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +166,13 @@ extension SuperheroDetailViewController {
         button.layer.shadowRadius = 4.0
         button.layer.shadowOpacity = 0.9
         button.layer.shadowOffset = .zero
+        button.removeTarget(nil, action: nil, for: .allEvents)
+        button.addTarget(nil, action: #selector(recruit(_:)), for: .touchUpInside)
+    }
+
+    @objc private func recruit(_: UIButton) {
+        squad.addToSuperheroes(superhero)
+        setFireStyle(button: recruitButtonView)
     }
 
     private func setFireStyle(button: UIButton) {
@@ -172,6 +186,13 @@ extension SuperheroDetailViewController {
         button.layer.shadowRadius = 0
         button.layer.shadowOpacity = 0
         button.layer.shadowOffset = .zero
+        button.removeTarget(nil, action: nil, for: .allEvents)
+        button.addTarget(nil, action: #selector(fire(_:)), for: .touchUpInside)
+    }
+
+    @objc private func fire(_: UIButton) {
+        squad.removeFromSuperheroes(superhero)
+        setRecruitStyle(button: recruitButtonView)
     }
 }
 

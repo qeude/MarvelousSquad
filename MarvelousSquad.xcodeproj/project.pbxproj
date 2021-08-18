@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214245426CC48CD0019B216 /* SquadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214245326CC48CD0019B216 /* SquadCell.swift */; };
+		2214245626CC4B2F0019B216 /* SquadSuperheroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214245526CC4B2F0019B216 /* SquadSuperheroCell.swift */; };
+		2214245826CD8AAB0019B216 /* HomeViewController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214245726CD8AAB0019B216 /* HomeViewController+UICollectionView.swift */; };
 		223CEBC126C7C2B200A17494 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 223CEBC026C7C2B200A17494 /* Nuke */; };
 		22439C8B26C9A61700386D29 /* SuperheroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22439C8A26C9A61700386D29 /* SuperheroDetailViewController.swift */; };
 		2255BC8C26C5321B002DB0EC /* SuperheroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2255BC8B26C5321B002DB0EC /* SuperheroCell.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2214245326CC48CD0019B216 /* SquadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadCell.swift; sourceTree = "<group>"; };
+		2214245526CC4B2F0019B216 /* SquadSuperheroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadSuperheroCell.swift; sourceTree = "<group>"; };
+		2214245726CD8AAB0019B216 /* HomeViewController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UICollectionView.swift"; sourceTree = "<group>"; };
 		22439C8A26C9A61700386D29 /* SuperheroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroDetailViewController.swift; sourceTree = "<group>"; };
 		2255BC8B26C5321B002DB0EC /* SuperheroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroCell.swift; sourceTree = "<group>"; };
 		2255BC8D26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
@@ -134,8 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				2266009E26C42A1C0090DFB8 /* HomeViewController.swift */,
+				2214245726CD8AAB0019B216 /* HomeViewController+UICollectionView.swift */,
 				2255BC8D26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift */,
 				2255BC8B26C5321B002DB0EC /* SuperheroCell.swift */,
+				2214245326CC48CD0019B216 /* SquadCell.swift */,
+				2214245526CC4B2F0019B216 /* SquadSuperheroCell.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -364,9 +373,12 @@
 			files = (
 				2266009F26C42A1C0090DFB8 /* HomeViewController.swift in Sources */,
 				2266009B26C42A1C0090DFB8 /* AppDelegate.swift in Sources */,
+				2214245826CD8AAB0019B216 /* HomeViewController+UICollectionView.swift in Sources */,
 				2255BC8E26C535A5002DB0EC /* HomeViewController+NSFetchedResultsController.swift in Sources */,
 				22439C8B26C9A61700386D29 /* SuperheroDetailViewController.swift in Sources */,
 				2266009D26C42A1C0090DFB8 /* SceneDelegate.swift in Sources */,
+				2214245426CC48CD0019B216 /* SquadCell.swift in Sources */,
+				2214245626CC4B2F0019B216 /* SquadSuperheroCell.swift in Sources */,
 				2255BC8C26C5321B002DB0EC /* SuperheroCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
