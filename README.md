@@ -6,7 +6,7 @@
 
 ## 🛠 Setup
 
-To get it work you should add a file named `Constants.swift` in the `Backend` package as bellow.
+To get it work you should add a file named `Constants.swift` in the `Backend/Sources/Backend/` package as bellow.
 
 ```swift
 public struct Constants {
