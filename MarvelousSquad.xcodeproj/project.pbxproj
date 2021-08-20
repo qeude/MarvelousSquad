@@ -22,6 +22,7 @@
 		226600B526C42A220090DFB8 /* MarvelousSquadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226600B426C42A220090DFB8 /* MarvelousSquadTests.swift */; };
 		226600C026C42A220090DFB8 /* MarvelousSquadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226600BF26C42A220090DFB8 /* MarvelousSquadUITests.swift */; };
 		226D0FBA26C4554A00384DE0 /* Backend in Frameworks */ = {isa = PBXBuildFile; productRef = 226D0FB926C4554A00384DE0 /* Backend */; };
+		22A2E7C126CFCE58004DCC26 /* UI in Frameworks */ = {isa = PBXBuildFile; productRef = 22A2E7C026CFCE58004DCC26 /* UI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		226600BF26C42A220090DFB8 /* MarvelousSquadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelousSquadUITests.swift; sourceTree = "<group>"; };
 		226600C126C42A220090DFB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		226D0FB826C43BAE00384DE0 /* Backend */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Backend; sourceTree = "<group>"; };
+		22A2E7BF26CFCE06004DCC26 /* UI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				226D0FBA26C4554A00384DE0 /* Backend in Frameworks */,
+				22A2E7C126CFCE58004DCC26 /* UI in Frameworks */,
 				223CEBC126C7C2B200A17494 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +204,7 @@
 		226600CD26C42A2E0090DFB8 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				22A2E7BF26CFCE06004DCC26 /* UI */,
 				226D0FB826C43BAE00384DE0 /* Backend */,
 			);
 			path = Packages;
@@ -233,6 +237,7 @@
 			packageProductDependencies = (
 				226D0FB926C4554A00384DE0 /* Backend */,
 				223CEBC026C7C2B200A17494 /* Nuke */,
+				22A2E7C026CFCE58004DCC26 /* UI */,
 			);
 			productName = MarvelousSquad;
 			productReference = 2266009726C42A1C0090DFB8 /* MarvelousSquad.app */;
@@ -725,6 +730,10 @@
 		226D0FB926C4554A00384DE0 /* Backend */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Backend;
+		};
+		22A2E7C026CFCE58004DCC26 /* UI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

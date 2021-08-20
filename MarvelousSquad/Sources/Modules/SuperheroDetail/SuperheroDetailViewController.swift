@@ -7,6 +7,7 @@
 
 import Backend
 import Nuke
+import UI
 import UIKit
 
 class SuperheroDetailViewController: UIViewController {
@@ -148,9 +149,7 @@ extension SuperheroDetailViewController {
         ])
 
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.setClear()
         Nuke.loadImage(with: superhero.thumbnailUrl, into: imageView)
     }
 
@@ -199,16 +198,10 @@ extension SuperheroDetailViewController {
 
 extension SuperheroDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= imageView.frame.maxY {
-            if navigationController?.navigationBar.shadowImage != nil {
-                navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-                navigationController?.navigationBar.shadowImage = nil
-            }
-        } else {
-            if navigationController?.navigationBar.shadowImage == nil {
-                navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                navigationController?.navigationBar.shadowImage = UIImage()
-            }
+        if scrollView.contentOffset.y >= imageView.frame.maxY, navigationController?.navigationBar.shadowImage != nil {
+            navigationController?.setDefault()
+        } else if navigationController?.navigationBar.shadowImage == nil {
+            navigationController?.setClear()
         }
     }
 }
