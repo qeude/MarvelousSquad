@@ -149,6 +149,7 @@ extension SuperheroDetailViewController {
         ])
 
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.isTranslucent = true
         navigationController?.setClear()
         Nuke.loadImage(with: superhero.thumbnailUrl, into: imageView)
     }

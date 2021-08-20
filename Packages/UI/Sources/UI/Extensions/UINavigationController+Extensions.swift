@@ -10,12 +10,12 @@ import UIKit
 
 public extension UINavigationController {
     func setClear() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
     }
 
     func setDefault() {
-        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        navigationController?.navigationBar.shadowImage = nil
+        navigationBar.setBackgroundImage(nil, for: .default)
+        navigationBar.shadowImage = nil
     }
 }
