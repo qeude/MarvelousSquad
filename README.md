@@ -2,7 +2,7 @@
 
 ## 📖 Description
 
-📱 Marvel Squad iOS app using Swift and [Marvel API](https://developer.marvel.com/). App mainly done to explore and learn using UIKit coupled to Combine.
+📱 Marvel Squad iOS app using Swift and [Marvel API](https://developer.marvel.com/). App mainly done to explore and learn about using UIKit coupled to Combine.
 
 ## 🛠 Setup
 
