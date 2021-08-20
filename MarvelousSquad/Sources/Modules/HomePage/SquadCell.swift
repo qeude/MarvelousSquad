@@ -22,7 +22,7 @@ class SquadCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.itemSize = CGSize(width: 96, height: 150)

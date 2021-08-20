@@ -10,6 +10,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var networkProvider: NetworkProvider?
+    var storeProvider: StoreProvider?
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -17,9 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let winScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: winScene)
-        let networkProvider = NetworkProvider()
-        let storeProvider = StoreProvider(networkProvider: networkProvider)
-        let vc = HomeViewController(storeProvider: storeProvider)
+        networkProvider = NetworkProvider()
+        storeProvider = StoreProvider(networkProvider: networkProvider!)
+        let vc = HomeViewController(storeProvider: storeProvider!)
         let rootNC = UINavigationController(rootViewController: vc)
         window?.rootViewController = rootNC
         window?.makeKeyAndVisible()
@@ -53,6 +55,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        storeProvider?.persistentContainer.saveContext()
     }
 }

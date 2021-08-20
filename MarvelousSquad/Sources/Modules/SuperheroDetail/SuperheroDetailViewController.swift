@@ -37,11 +37,12 @@ class SuperheroDetailViewController: UIViewController {
         return contentView
     }()
 
-    lazy var mainStackView: UIStackView = {
+    private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.distribution = .fill
+        stackView.alignment = .center
         stackView.spacing = 32
         return stackView
     }()
@@ -55,7 +56,7 @@ class SuperheroDetailViewController: UIViewController {
         return imageView
     }()
 
-    lazy var contentStackView: UIStackView = {
+    private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = NSLayoutConstraint.Axis.vertical
@@ -124,15 +125,14 @@ extension SuperheroDetailViewController {
         contentStackView.addArrangedSubview(descriptionLabelView)
 
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 450),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 450),
+            imageView.leftAnchor.constraint(equalTo: mainStackView.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: mainStackView.rightAnchor),
             mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -142,8 +142,8 @@ extension SuperheroDetailViewController {
             mainStackView.rightAnchor.constraint(equalTo: mainView.rightAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
             mainStackView.leftAnchor.constraint(equalTo: mainView.leftAnchor),
-            contentStackView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16),
-            contentStackView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16),
+            contentStackView.leftAnchor.constraint(equalTo: mainStackView.leftAnchor, constant: 16),
+            contentStackView.rightAnchor.constraint(equalTo: mainStackView.rightAnchor, constant: -16),
             recruitButtonView.heightAnchor.constraint(equalToConstant: 55),
         ])
 

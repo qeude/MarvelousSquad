@@ -29,7 +29,7 @@ class SuperheroCell: UITableViewCell {
         avatarImageView.image = nil
     }
 
-    lazy var mainView: UIView = {
+    private lazy var mainView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 8
@@ -37,7 +37,7 @@ class SuperheroCell: UITableViewCell {
         return view
     }()
 
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = NSLayoutConstraint.Axis.horizontal
@@ -64,7 +64,7 @@ class SuperheroCell: UITableViewCell {
         return label
     }()
 
-    lazy var arrowImageView: UIImageView = {
+    private lazy var arrowImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
