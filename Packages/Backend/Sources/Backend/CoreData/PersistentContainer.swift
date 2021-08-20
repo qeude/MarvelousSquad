@@ -24,7 +24,7 @@ public final class PersistentContainer: NSPersistentContainer {
         }
     }
 
-    func saveContext() {
+    public func saveContext() {
         let context = viewContext
         if context.hasChanges {
             do {

@@ -11,19 +11,20 @@ import Foundation
 public class Squad: NSManagedObject {}
 
 public extension Squad {
-    static func getSquad(with moc: NSManagedObjectContext) -> Squad {
+    static func getSquad(with persistentContainer: PersistentContainer) -> Squad {
         let request: NSFetchRequest<Squad> = Squad.fetchRequest()
         request.returnsObjectsAsFaults = false
         do {
-            if let squad = try moc.fetch(request).first {
+            if let squad = try persistentContainer.viewContext.fetch(request).first {
                 return squad
             }
         } catch {
             print("Detele all data in SuperHero error :", error)
         }
-        let squad = Squad(context: moc)
+        let squad = Squad(context: persistentContainer.viewContext)
         squad.identifier = UUID()
         squad.superheroes = []
+        persistentContainer.saveContext()
         return squad
     }
 }

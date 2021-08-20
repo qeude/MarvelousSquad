@@ -14,7 +14,7 @@ import UIKit
 class HomeViewController: UIViewController {
     init(storeProvider: StoreProviderProtocol) {
         self.storeProvider = storeProvider
-        squad = Squad.getSquad(with: storeProvider.persistentContainer.viewContext)
+        squad = Squad.getSquad(with: storeProvider.persistentContainer)
         super.init(nibName: nil, bundle: nil)
     }
 

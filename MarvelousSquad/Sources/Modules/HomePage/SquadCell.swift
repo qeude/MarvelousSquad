@@ -25,9 +25,9 @@ class SquadCell: UITableViewCell {
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 150, height: 150)
-        flowLayout.minimumLineSpacing = 2.0
-        flowLayout.minimumInteritemSpacing = 5.0
+        flowLayout.itemSize = CGSize(width: 116, height: 150)
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.register(SquadSuperheroCell.self, forCellWithReuseIdentifier: SquadSuperheroCell.Identifier)
         collectionView.backgroundColor = .clear
@@ -52,6 +52,7 @@ class SquadCell: UITableViewCell {
 extension SquadCell {
     private func setupUI() {
         contentView.addSubview(collectionView)
+        backgroundColor = .clear
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),

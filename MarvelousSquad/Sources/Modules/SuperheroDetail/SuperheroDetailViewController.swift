@@ -13,7 +13,7 @@ class SuperheroDetailViewController: UIViewController {
     init(superhero: Superhero, storeProvider: StoreProviderProtocol) {
         self.storeProvider = storeProvider
         self.superhero = superhero
-        squad = Squad.getSquad(with: storeProvider.persistentContainer.viewContext)
+        squad = Squad.getSquad(with: storeProvider.persistentContainer)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -133,7 +133,6 @@ extension SuperheroDetailViewController {
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             imageView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
             mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mainView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
             mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -143,8 +142,8 @@ extension SuperheroDetailViewController {
             mainStackView.rightAnchor.constraint(equalTo: mainView.rightAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
             mainStackView.leftAnchor.constraint(equalTo: mainView.leftAnchor),
-            contentStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            contentStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            contentStackView.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 16),
+            contentStackView.rightAnchor.constraint(equalTo: mainView.rightAnchor, constant: -16),
             recruitButtonView.heightAnchor.constraint(equalToConstant: 55),
         ])
 
@@ -172,6 +171,7 @@ extension SuperheroDetailViewController {
 
     @objc private func recruit(_: UIButton) {
         squad.addToSuperheroes(superhero)
+        storeProvider.persistentContainer.saveContext()
         setFireStyle(button: recruitButtonView)
     }
 
@@ -192,6 +192,7 @@ extension SuperheroDetailViewController {
 
     @objc private func fire(_: UIButton) {
         squad.removeFromSuperheroes(superhero)
+        storeProvider.persistentContainer.saveContext()
         setRecruitStyle(button: recruitButtonView)
     }
 }
