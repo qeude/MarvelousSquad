@@ -29,7 +29,7 @@ class SquadSuperheroCell: UICollectionViewCell {
     }()
 
     lazy var avatarImageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageView.frame.size.height / 2
@@ -61,8 +61,8 @@ extension SquadSuperheroCell {
             stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
             stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 80),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 80),
         ])
     }
 }

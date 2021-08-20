@@ -16,6 +16,7 @@ public final class PersistentContainer: NSPersistentContainer {
         super.init(name: name, managedObjectModel: mom)
 
         loadPersistentStores { storeDescription, error in
+            self.viewContext.automaticallyMergesChangesFromParent = true
             self.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
             if let error = error {
                 assertionFailure(error.localizedDescription)

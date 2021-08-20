@@ -12,6 +12,8 @@ import Nuke
 import UIKit
 
 class HomeViewController: UIViewController {
+    private let paginationStep = 20
+
     init(storeProvider: StoreProviderProtocol) {
         self.storeProvider = storeProvider
         squad = Squad.getSquad(with: storeProvider.persistentContainer)
@@ -47,9 +49,6 @@ class HomeViewController: UIViewController {
     private var currentCount: Int = 0
     private var cancellables: Set<AnyCancellable> = []
 
-    var insertIndexPaths = [IndexPath]()
-    var deleteIndexPaths = [IndexPath]()
-
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,16 +80,6 @@ class HomeViewController: UIViewController {
 
     @objc private func refresh(_: Any) {
         state = .loading
-        let request: NSFetchRequest<Superhero> = Superhero.fetchRequest()
-        request.returnsObjectsAsFaults = false
-        do {
-            let results = try storeProvider.persistentContainer.viewContext.fetch(request)
-            for object in results {
-                storeProvider.persistentContainer.viewContext.delete(object)
-            }
-        } catch {
-            print("Detele all data in SuperHero error :", error)
-        }
         fetchSuperheroes(offset: 0)
     }
 
@@ -115,7 +104,7 @@ class HomeViewController: UIViewController {
 
     private func updateNextSet() {
         if currentOffset != totalItems {
-            fetchSuperheroes(offset: min(totalItems, currentOffset + 20))
+            fetchSuperheroes(offset: min(totalItems, currentOffset + paginationStep))
         }
     }
 }
@@ -139,6 +128,10 @@ extension HomeViewController {
         titleImageView.contentMode = .scaleAspectFit
         titleView.addSubview(titleImageView)
         navigationItem.titleView = titleView
+        let arrowImage = UIImage(systemName: "arrow.left")?.withTintColor(.white, renderingMode: .alwaysOriginal).withConfiguration(UIImage.SymbolConfiguration(pointSize: 24, weight: .bold))
+        navigationController?.navigationBar.backIndicatorImage = arrowImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = arrowImage
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 }
 
@@ -146,7 +139,7 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
 
-        let sectionLabel = UILabel(frame: CGRect(x: 16, y: 28, width:
+        let sectionLabel = UILabel(frame: CGRect(x: 16, y: 16, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         sectionLabel.font = UIFont.boldSystemFont(ofSize: 22)
         sectionLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
@@ -193,7 +186,7 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == currentCount - 10 {
+        if indexPath.row == currentCount - 10 || indexPath.row == (superheroesFetchedResultsController.fetchedObjects?.count ?? -1) - 1 {
             updateNextSet()
         }
 
