@@ -1,12 +1,16 @@
-# MarvelousSquad
+# 🦸🏻‍♂️ Marvelous Squad
+
+<div align=center><img src="demo.gif" height="500"></div>
 
 ## 📖 Description
 
-📱 Marvel Squad iOS app using Swift and [Marvel API](https://developer.marvel.com/). App mainly done to explore and learn about using UIKit coupled to Combine.
+📱 Marvel squad iOS app using Swift and [Marvel API](https://developer.marvel.com/). App mainly done to explore and learn about using UIKit coupled to Combine and Core Data.
+
+Superheroes are retrieved from the API while squads are only on the Core Data side.
 
 ## 🛠 Setup
 
-To get it work you should add a file named `Constants.swift` in the `Backend/Sources/Backend/` package as bellow.
+To get it work you should add a file named `Constants.swift` in the `Packages/Backend/Sources/Backend/` package as bellow.
 
 ```swift
 public struct Constants {
@@ -20,6 +24,8 @@ public struct Constants {
 I've tried to use as few external libraries as possible to learn about concepts.
 
 - [Nuke](https://github.com/kean/Nuke): Image loading system
+
+Packages that are in the `Packages` folder are local packages. It improves modularity, maintenance etc... as explained [here](https://developer.apple.com/documentation/swift_packages/organizing_your_code_with_local_packages).
 
 ## 👨🏻‍💻 Developer
 
