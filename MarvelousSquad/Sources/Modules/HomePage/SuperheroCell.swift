@@ -86,10 +86,10 @@ extension SuperheroCell {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(arrowImageView)
 
-        let bottomConstraint = mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        let bottomConstraint = mainView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         bottomConstraint.priority = .required - 1
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             mainView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             mainView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 16),
