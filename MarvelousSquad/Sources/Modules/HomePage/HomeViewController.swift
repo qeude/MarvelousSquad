@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
 
     var superheroesFetchedResultsController: NSFetchedResultsController<Superhero>!
     var squad: Squad
-    var currentOffset: Int = 0
     var totalItems: Int = 0
     var currentCount: Int = 0
     private var cancellables: Set<AnyCancellable> = []
@@ -83,6 +82,7 @@ class HomeViewController: UIViewController {
     }
 
     func fetchSuperheroes(offset: Int) {
+        currentCount = currentCount + paginationStep
         storeProvider
             .listSuperheroes(with: offset)
             .sink { completion in
@@ -94,8 +94,6 @@ class HomeViewController: UIViewController {
                 }
             } receiveValue: { response in
                 self.totalItems = response.total
-                self.currentOffset = response.offset
-                self.currentCount = self.currentOffset + response.count
                 self.state = .data
             }
             .store(in: &cancellables)

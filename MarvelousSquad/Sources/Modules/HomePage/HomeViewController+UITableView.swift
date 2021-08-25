@@ -77,8 +77,8 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     private func updateNextSet() {
-        if currentOffset != totalItems {
-            fetchSuperheroes(offset: min(totalItems, currentOffset + paginationStep))
+        if currentCount != totalItems {
+            fetchSuperheroes(offset: min(totalItems, currentCount + paginationStep))
         }
     }
 }

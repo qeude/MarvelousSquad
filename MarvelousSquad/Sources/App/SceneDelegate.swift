@@ -10,8 +10,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var networkProvider: NetworkProvider?
-    var storeProvider: StoreProvider?
+    var networkProvider: NetworkProviderProtocol?
+    var storeProvider: StoreProviderProtocol?
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
