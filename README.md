@@ -1,6 +1,6 @@
 # 🦸🏻‍♂️ Marvelous Squad
 
-<div align=center><img src="demo.gif" height="500"></div>
+<div align=center><img src="demo.gif" height="30%" width="30%"></div>
 
 ## 📖 Description
 
